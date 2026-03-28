@@ -1,5 +1,5 @@
 /// @description 
-
+init_Game();
 init_Fmod();
 
 

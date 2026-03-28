@@ -1,6 +1,5 @@
-var _cam = view_camera[0];
-view_w = camera_get_view_width(_cam);
-view_h = camera_get_view_height(_cam);
+view_w = window_get_width();
+view_h = window_get_height();
 
 cam_zoom = 1;
 cam_w = view_w*cam_zoom;

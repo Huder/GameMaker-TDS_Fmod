@@ -52,6 +52,7 @@
     {"id":{"name":"Fmod_Functions","path":"scripts/Fmod_Functions/Fmod_Functions.yy",},},
     {"id":{"name":"scr_Armature_system","path":"scripts/scr_Armature_system/scr_Armature_system.yy",},},
     {"id":{"name":"scr_Fmod_Init","path":"scripts/scr_Fmod_Init/scr_Fmod_Init.yy",},},
+    {"id":{"name":"scr_Game_Init","path":"scripts/scr_Game_Init/scr_Game_Init.yy",},},
     {"id":{"name":"spr_Human_arm_R_bottom","path":"sprites/spr_Human_arm_R_bottom/spr_Human_arm_R_bottom.yy",},},
     {"id":{"name":"spr_Human_arm_R_top","path":"sprites/spr_Human_arm_R_top/spr_Human_arm_R_top.yy",},},
     {"id":{"name":"spr_Human_Backpack","path":"sprites/spr_Human_Backpack/spr_Human_Backpack.yy",},},

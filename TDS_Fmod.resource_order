@@ -29,6 +29,7 @@
     {"name":"Fmod_Definitions","order":2,"path":"scripts/Fmod_Definitions/Fmod_Definitions.yy",},
     {"name":"Fmod_Functions","order":3,"path":"scripts/Fmod_Functions/Fmod_Functions.yy",},
     {"name":"scr_Armature_system","order":1,"path":"scripts/scr_Armature_system/scr_Armature_system.yy",},
+    {"name":"scr_Game_Init","order":2,"path":"scripts/scr_Game_Init/scr_Game_Init.yy",},
     {"name":"spr_Human_arm_R_bottom","order":3,"path":"sprites/spr_Human_arm_R_bottom/spr_Human_arm_R_bottom.yy",},
     {"name":"spr_Human_arm_R_top","order":2,"path":"sprites/spr_Human_arm_R_top/spr_Human_arm_R_top.yy",},
     {"name":"spr_Human_Backpack","order":1,"path":"sprites/spr_Human_Backpack/spr_Human_Backpack.yy",},
