@@ -228,16 +228,111 @@ function armature_bone(Spr=undefined, ParentBone=-1, BoneName="default", StartX=
         var sy = sign(sys_obj.image_yscale);
         
         // Docelowa rotacja "logicza" w design-space
-        var target_world_rot = Angle * sx * sy;
+        var target_world_rot = Angle*sx*sy;
         
         // Wyznaczamy aktualny bazowy kąt (punkt odniesienia w zależności od hierarchii)
-        var sys_rot = par_sys.sys_uses_rotation ? sys_obj.rotation : sys_obj.image_angle;
+        var sys_rot = sys_uses_rotation ? sys_obj.rotation : sys_obj.image_angle;
         var anchor_rot = (par_bone != -1 && inherit_rotation) ? par_bone.world_rot : sys_rot;
         
         // Obliczamy wymaganą lokalną rotację (korzystamy z angle_difference by uniknąć przeskoków)
-        local_rot = angle_difference(target_world_rot, anchor_rot + base_rot);
+        local_rot = angle_difference(target_world_rot, anchor_rot+base_rot);
         
         if ( has_rot_constraint ) local_rot = clamp(local_rot, constraint_rot_min, constraint_rot_max);
+        return self;
+    }
+    
+    /// @desc Natychmiastowa synchronizacja parametrów światowych kości (używana przez IK)
+    function sync_world()
+    {
+        var sys_obj = par_sys.parID;
+        var sys_rot = sys_uses_rotation ? sys_obj.rotation : sys_obj.image_angle; 
+        var sys_sx = sys_obj.image_xscale;
+        var sys_sy = sys_obj.image_yscale;
+        
+        if ( par_bone != -1 )
+        {
+            world_rot = inherit_rotation ? (par_bone.world_rot+base_rot+local_rot) : (sys_rot+base_rot+local_rot);
+            var rx = base_pos_start_x*sys_sx+local_x;
+            var ry = base_pos_start_y*sys_sy+local_y;
+            var dist = point_distance(0, 0, rx, ry);
+            var dir  = par_bone.world_rot+point_direction(0, 0, rx, ry);
+            world_x = par_bone.world_x+lengthdir_x(dist, dir);
+            world_y = par_bone.world_y+lengthdir_y(dist, dir);
+        }
+        else
+        {
+            world_rot = sys_rot+base_rot+local_rot;
+            var rx = (base_pos_start_x+local_x)*sys_sx;
+            var ry = (base_pos_start_y+local_y)*sys_sy;
+            var dist = point_distance(0, 0, rx, ry);
+            var dir  = point_direction(0, 0, rx, ry)+sys_rot;
+            world_x = sys_obj.x+lengthdir_x(dist, dir);
+            world_y = sys_obj.y+lengthdir_y(dist, dir);
+        }
+        
+        world_x_end = world_x+lengthdir_x(base_length*sys_sx, world_rot);
+        world_y_end = world_y+lengthdir_y(base_length*sys_sx, world_rot);
+        
+        var loc_rot = base_rot+local_rot;
+        local_x_end = (base_pos_start_x*sys_sx+local_x)+lengthdir_x(base_length*sys_sx, loc_rot);
+        local_y_end = (base_pos_start_y*sys_sy+local_y)+lengthdir_y(base_length*sys_sx, loc_rot);
+    }
+    
+    /// @desc Rozwiązuje IK dla łańcucha dwóch kości (obecna + pierwsze dziecko)
+    /// @param {Real} TargetX Cel X w świecie
+    /// @param {Real} TargetY Cel Y w świecie
+    /// @param {Real} BendDir Kierunek zgięcia (-1 lub 1, domyślnie 1)
+    function solve_ik_2(TargetX, TargetY, BendDir=1)
+    {
+        // Znajdź dziecko (np. przedramię)
+        var child = undefined;
+        var b_list = par_sys.bones;
+        for ( var i = 0; i < array_length(b_list); i++ ) 
+        {
+            if ( b_list[i].par_bone == self ) 
+            {
+                child = b_list[i];
+                break;
+            }
+        }
+        if ( child == undefined ) 
+            return self;
+        
+        var sys_obj = par_sys.parID;
+        var s_x = abs(sys_obj.image_xscale);
+        
+        // Pobierz aktualne długości kości w świecie
+        var L1 = base_length*s_x;
+        var L2 = child.base_length*s_x;
+        
+        // Oblicz dystans do celu i ogranicz go (by uniknąć błędów w acos)
+        var dist = point_distance(world_x, world_y, TargetX, TargetY);
+        dist = clamp(dist, abs(L1-L2)+0.1, L1+L2-0.1);
+        
+        // Twierdzenie cosinusów
+        var cos_alpha = (L1*L1+dist*dist-L2*L2) / (2*L1*dist);
+        var cos_beta  = (L1*L1+L2*L2-dist*dist) / (2*L1*L2);
+        
+        var alpha = radtodeg(arccos(clamp(cos_alpha, -1, 1)));
+        var beta  = radtodeg(arccos(clamp(cos_beta, -1, 1)));
+        
+        var base_dir = point_direction(world_x, world_y, TargetX, TargetY);
+        
+        // Wyznacz kąty światowe uwzględniając kierunek zgięcia i mirroring postaci
+        var flip = sign(sys_obj.image_xscale)*sign(sys_obj.image_yscale);
+        var final_bend = BendDir*flip;
+        
+        var w_rot1 = base_dir-final_bend*alpha;
+        
+        // Ustawiamy podstawę IK (ramię), clampujemy i synchronizujemy świat
+        rotate_set_world(w_rot1);
+        sync_world();
+        
+        // Celujemy drugą kością bezpośrednio w Target z nowej, realnej pozycji łokcia
+        var w_rot2 = point_direction(world_x_end, world_y_end, TargetX, TargetY);
+        child.rotate_set_world(w_rot2);
+        child.sync_world();
+        
         return self;
     }
     
