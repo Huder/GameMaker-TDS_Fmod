@@ -6,7 +6,6 @@
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_243102D9","path":"rooms/rm_Game/rm_Game.yy",},
     {"name":"inst_347E18F8","path":"rooms/rm_Game/rm_Game.yy",},
     {"name":"inst_F0DBBEE","path":"rooms/rm_Game/rm_Game.yy",},
     {"name":"inst_4800AF51","path":"rooms/rm_Game/rm_Game.yy",},
@@ -15,7 +14,6 @@
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Instances","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v4","%Name":"inst_243102D9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_243102D9","objectId":{"name":"o_Fmod_Controler","path":"objects/o_Fmod_Controler/o_Fmod_Controler.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
         {"$GMRInstance":"v4","%Name":"inst_347E18F8","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_347E18F8","objectId":{"name":"o_Cam","path":"objects/o_Cam/o_Cam.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":736.0,"y":352.0,},
         {"$GMRInstance":"v4","%Name":"inst_F0DBBEE","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_F0DBBEE","objectId":{"name":"o_Human","path":"objects/o_Human/o_Human.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":36.404903,"scaleX":1.0,"scaleY":1.0,"x":288.0,"y":192.0,},
         {"$GMRInstance":"v4","%Name":"inst_4800AF51","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4800AF51","objectId":{"name":"o_Human","path":"objects/o_Human/o_Human.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":160.29575,"scaleX":1.0,"scaleY":1.0,"x":1120.0,"y":544.0,},
