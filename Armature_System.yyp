@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"TDS_Fmod",
+  "%Name":"Armature_System",
   "AudioGroups":[
     {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -36,7 +36,7 @@
   "MetaData":{
     "IDEVersion":"2024.14.3.217",
   },
-  "name":"TDS_Fmod",
+  "name":"Armature_System",
   "resources":[
     {"id":{"name":"crv_armature_lerps","path":"animcurves/crv_armature_lerps/crv_armature_lerps.yy",},},
     {"id":{"name":"FMOD","path":"extensions/FMOD/FMOD.yy",},},
