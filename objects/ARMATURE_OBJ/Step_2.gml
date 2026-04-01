@@ -4,4 +4,3 @@ if ( EnableDebugView )
 {
     debug_watch = armature.toString();
 }
-

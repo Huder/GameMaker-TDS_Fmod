@@ -13,6 +13,7 @@ view_set_camera(0, cam);
 cam_x = x;
 cam_y = y;
 cam_lerp = 0.25;
+cam_angle = 0;
 
 
 zoom_target = cam_zoom;
