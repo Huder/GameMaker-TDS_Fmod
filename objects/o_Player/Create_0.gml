@@ -5,7 +5,11 @@ rot = image_angle;
 image_angle = 0; // resetujemy bo nie chcemy obracać maski kolizji
 rot_spd = 9;
 
-armature = new armatureSys(rot);
+// Inicjujemy armaturę w domyślnej pozie T-Pose
+armature = new armature_Sys(rot);
+armature.Add_Bone(spr_Human_Backpack, -1,   "Torso", "",        0, 0, 1,  0, 1, 1, 2);
+armature.Add_Bone(spr_Human_head, -1,       "Head",  "Torso",   0, 0, 26, 0, 1, 1, 1);
+
 
 // Debug view stuff
 debug_watch = "";

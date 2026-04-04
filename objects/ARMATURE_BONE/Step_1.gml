@@ -1,4 +1,4 @@
-if ( !instance_exists(parent_instance) )
+if ( !instance_exists(system_instance) )
 {
     instance_destroy();
 }
