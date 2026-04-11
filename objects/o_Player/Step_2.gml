@@ -1,4 +1,3 @@
-armature.Step();
 
 // Debug
 var p_Pos = $"   Position: [{x}, {y}]\n"+

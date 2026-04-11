@@ -9,6 +9,4 @@ if ( !keyboard_check(vk_control) )
     {
         rot += min(absAngle, rot_spd)*sign(toMouseAngle);
     }
-    
-    armature.Set_Rotation(rot);
 }
